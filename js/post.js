@@ -1,9 +1,9 @@
-function loadPosts (){
+function loadPosts() {
 
     fetch('https://jsonplaceholder.typicode.com/posts')
-    .then( response => response.json())
-    // .then( data => console.log(data))
-    .then( data => displayPosts(data))
+        .then(response => response.json())
+        // .then( data => console.log(data))
+        .then(data => displayPosts(data))
 }
 
 
@@ -15,9 +15,9 @@ function loadPosts (){
 */
 
 
-function displayPosts(posts){
+function displayPosts(posts) {
     const postContainer = document.getElementById('post-container')
-    for( const post of posts){
+    for (const post of posts) {
         const postDiv = document.createElement('div')
         postDiv.classList.add('post')
         postDiv.innerHTML = `
@@ -30,3 +30,23 @@ function displayPosts(posts){
 
 }
 
+
+function deletPost() {
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+        method: 'DELETE',
+    });
+}
+
+function patchApost() {
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+        method: 'PATCH',
+        body: JSON.stringify({
+            title: 'foo',
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+}
